@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { categories } from '../../testdata';
+import Scoreboard from './Scoreboard';
+import Gameboard from './Gameboard';
+import Response from './Response';
 
 export default class App extends Component {
   constructor(props) {
@@ -13,17 +16,35 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
+    
     // Getting data from an external API
+    //http://jservice.io/api/categories
     //1. A query to /api/categories to get a set of categories
     //2. A set of queries afterwards to /api/category at each category id to get clues for that category
+    // fetch("http://jservice.io/api/categories")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         items: result.items
+    //       });
+    //     },
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
   }
   render() {
+
     return (
       <div id={'app'}>
-        What is Reactor 2?
-        {/* Gameboard */}
-        {/* Scoreboard */}
-        {/* Response */}
+        <Gameboard currentQuestion={this.state.currentQuestion} answeredQuestions={this.state.answeredQuestions} categories={this.state.results} />
+        <Scoreboard score={this.state.score}/>
+        <Response />
       </div>
     );
   }

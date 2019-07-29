@@ -1,7 +1,11 @@
 import React from 'react';
+import { categories } from '../../testdata';
 import PropTypes from 'prop-types';
+import App from './App';
 
-const Scoreboard = props => {
+const Scoreboard = (props) => {
+  
+  
   /*
     Scoreboard will live inside of App and the 'score' value of the answered question will need to be added to or subtracted
     from the score of the current quiz session.
@@ -12,6 +16,7 @@ const Scoreboard = props => {
   return (
     <div id={'scoreboard'} data-testid="scoreboard">
       ${props.score}
+     
     </div>
   );
 };

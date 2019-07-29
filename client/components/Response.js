@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { categories } from '../../testdata';
 import PropTypes from 'prop-types';
 
 export default class Response extends Component {
