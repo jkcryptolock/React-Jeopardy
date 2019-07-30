@@ -7,10 +7,11 @@ import Clue from './Clue';
 const Category = (props) => {
   console.log(props)
   return (
-    <div className='clueValue'> 
+    <div className="category">
+    <div className="categoryTitle">{props.category.title.toUpperCase()}</div>
       {props.category.clues.map(clue =>
-
-      <Clue clue={clue} />)}</div>
+      <Clue clue={clue} />)}
+    </div>
   )
 
 };

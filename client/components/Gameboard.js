@@ -9,7 +9,7 @@ const Gameboard = (props) => {
 
   return (
     <div data-testid="gameboard" id={props.currentQuestion.question ? 'question' : 'gameboard'}>
-      <div id="categories"><Categories categories={props.categories} />
+      <Categories categories={props.categories} />
   
 
         {/* was a question clicked?  */}
@@ -17,7 +17,6 @@ const Gameboard = (props) => {
         {/* No? Show Categories */}
         {/* {props.categories.map(category => 
         } /> */}
-      </div>
     </div>
   )
 };
