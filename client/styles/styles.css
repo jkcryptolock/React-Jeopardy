@@ -19,7 +19,9 @@ ul {
   margin: 0;
   font-family: 'ITC Korinna';
   font-weight: 800;
+  background-image: linear-gradient(blue, purple);
 }
+
 
 #app {
   display: grid;

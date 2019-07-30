@@ -15,6 +15,12 @@ export default class App extends Component {
       score: 0
     };
   }
+
+  SelectQuestion(clue) {
+    this.setState({currentQuestion: clue});
+    console.log(this.state.currentQuestion)
+  }
+
   componentDidMount() {
     
     // Getting data from an external API
@@ -38,14 +44,20 @@ export default class App extends Component {
     //     }
     //   )
   }
+
   render() {
 
     return (
       <div id={'app'}>
-        <Gameboard currentQuestion={this.state.currentQuestion} answeredQuestions={this.state.answeredQuestions} categories={this.state.results} />
+        <Gameboard 
+          currentQuestion={this.state.currentQuestion} 
+          answeredQuestions={this.state.answeredQuestions} 
+          categories={this.state.results} 
+          selectQuestion={this.SelectQuestion.bind(this)} />
         <Scoreboard score={this.state.score}/>
         <Response />
       </div>
     );
+
   }
 }

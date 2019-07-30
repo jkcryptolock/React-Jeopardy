@@ -6,11 +6,18 @@ import Category from './Category';
 const Categories = (props) => {
   return (
       <div id='categories' data-testid="categoryList">
-      {props.categories.map(category => 
-      <Category category={category}/>)}</div> 
+        {props.categories.map(category => 
+        <Category 
+          category={category}
+          currentQuestion={props.currentQuestion}
+          answeredQuestions={props.answeredQuestions}
+          selectQuestion={props.selectQuestion} />
+        )}
+      </div> 
       
   )
 };
+
 
 
 Categories.propTypes = {

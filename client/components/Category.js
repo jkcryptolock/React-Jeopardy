@@ -5,12 +5,15 @@ import Clue from './Clue';
 
 
 const Category = (props) => {
-  console.log(props)
   return (
     <div className="category">
-    <div className="categoryTitle">{props.category.title.toUpperCase()}</div>
-      {props.category.clues.map(clue =>
-      <Clue clue={clue} />)}
+      <div className="categoryTitle">{props.category.title.toUpperCase()}
+      </div>
+      {props.category.clues.map(clueObject =>
+      <Clue 
+        clueObject={clueObject}
+        selectQuestion={props.selectQuestion}
+      />)}
     </div>
   )
 
