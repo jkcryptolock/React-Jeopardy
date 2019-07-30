@@ -7,15 +7,12 @@ import Clue from './Clue';
 const Category = (props) => {
   console.log(props)
   return (
-      // <div>
-      <div className='categoryTitle'>
-        {props.title}
-      </div>
-      /* <div className='clueValue' data-testid="categoryList">
-        <Clue clueObject={props.clues[0]}/>
-      </div>
-      </div> */
-  );
+    <div className='clueValue'> 
+      {props.category.clues.map(clue =>
+
+      <Clue clue={clue} />)}</div>
+  )
+
 };
 
 Category.propTypes = {

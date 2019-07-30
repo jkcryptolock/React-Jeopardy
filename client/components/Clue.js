@@ -6,9 +6,9 @@ const Clue = (props) => {
   // show $ value of clue OR
   // the Clue question itself OR
   // empty screen if it was already answered
-  // return (
-  //   // <div>{props.clueObject}</div>
-  // )
+  return (
+    <div className='clueValue'>{props.clue.value} </div> 
+  )
 };
 
 Clue.propTypes = {

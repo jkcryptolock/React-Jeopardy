@@ -5,18 +5,21 @@ import Categories from './Categories';
 
 const Gameboard = (props) => {
 
+  console.log(categories[0].clues)
+
   return (
     <div data-testid="gameboard" id={props.currentQuestion.question ? 'question' : 'gameboard'}>
-    <div id="categories"><Categories categories={props.categories} currentQuestion={props.currentQuestion} answeredQuestions={props.answeredQuestions}/></div>
- 
+      <div id="categories"><Categories categories={props.categories} />
+  
 
-      {/* was a question clicked?  */}
-      {/* Yes? Show clue */}
-      {/* No? Show Categories */}
-      {/* {props.categories.map(category => 
-      } /> */}
+        {/* was a question clicked?  */}
+        {/* Yes? Show clue */}
+        {/* No? Show Categories */}
+        {/* {props.categories.map(category => 
+        } /> */}
+      </div>
     </div>
-  );
+  )
 };
 
 Gameboard.propTypes = {
