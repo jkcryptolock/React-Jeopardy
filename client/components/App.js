@@ -18,7 +18,6 @@ export default class App extends Component {
 
   SelectQuestion(clue) {
     this.setState({currentQuestion: clue});
-    console.log(this.state.currentQuestion)
   }
 
   componentDidMount() {

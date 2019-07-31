@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Categories from './Categories';
 
 const Gameboard = (props) => {
+  
 
   if (props.currentQuestion.question) {
     return (
