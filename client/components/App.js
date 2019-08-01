@@ -9,39 +9,59 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      results: categories,
+      results: [],
       currentQuestion: {},
       answeredQuestions: [],
       score: 0
     };
   }
 
+  componentWillMount() {
+    fetch("http://jservice.io/api/categories?count=100")
+    .then(res => res.json())
+    .then(
+      (result) => {
+        // map results
+        let newResults = [];
+        for (let i = 0; i <100; i+=20){
+          let index = Math.floor(Math.random()*20)
+          newResults.push(result[index+i])
+        }
+        newResults.map(category => {
+          fetch(`http://jservice.io/api/category?id=${category.id}`)
+            .then(res => res.json())
+            .then(clues => {
+              let newClues = clues.clues.slice(0,5)
+              clues.clues = newClues;
+              this.setState({ results: this.state.results.concat(clues)});
+            })
+        })
+      })
+}
+
   SelectQuestion(clue) {
     this.setState({currentQuestion: clue});
+    console.log(clue.answer)
+  }
+
+  submitResponse(response) {
+    if (this.state.currentQuestion.answer && this.state.currentQuestion.answer.toLowerCase().includes(response.toLowerCase())) {
+      this.setState({
+          score: this.state.score + this.state.currentQuestion.value,
+          answeredQuestions: this.state.answeredQuestions.concat(this.state.currentQuestion.id),
+          currentQuestion: {}
+      })
+    } else if (this.state.currentQuestion.answer) {
+      this.setState({
+        score: this.state.score - this.state.currentQuestion.value,
+        answeredQuestions: this.state.answeredQuestions.concat(this.state.currentQuestion.id),
+        currentQuestion: {}
+    })
+    }
   }
 
   componentDidMount() {
-    
-    // Getting data from an external API
-    //http://jservice.io/api/categories
-    //1. A query to /api/categories to get a set of categories
-    //2. A set of queries afterwards to /api/category at each category id to get clues for that category
-    // fetch("http://jservice.io/api/categories")
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         items: result.items
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error
-    //       });
-    //     }
-    //   )
+
   }
 
   render() {
@@ -54,7 +74,7 @@ export default class App extends Component {
           categories={this.state.results} 
           selectQuestion={this.SelectQuestion.bind(this)} />
         <Scoreboard score={this.state.score}/>
-        <Response />
+        <Response submitResponse={this.submitResponse.bind(this)}/>
       </div>
     );
 

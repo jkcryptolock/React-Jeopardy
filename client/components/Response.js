@@ -12,21 +12,8 @@ export default class Response extends Component {
     this.recordResponse = this.recordResponse.bind(this);
   }
 
-  recordResponse(newText) {
-    this.setState({ userResponse: newText });
-  }
-
-  submitResponse(event) {
-    if (event.key === 'Enter') {
-      var answer = document.getElementById('responseText').value
-      this.recordResponse(answer);
-      // console.log(answer)
-    }
-
-    
-    // this function should fire when the user fills the response and hits 'enter'
-      // Is the user response correct? 
-      // yes/no? What should happen?
+  recordResponse(event) {
+    this.setState({ userResponse: event.target.value });
   }
 
   render(){
@@ -37,9 +24,17 @@ export default class Response extends Component {
           type='text'
           placeholder='Answers go here!'
           // handle data change
-
+          value={this.state.userResponse}
+          onChange={this.recordResponse}
           // handle when 'enter' is hit
-          onKeyPress={this.submitResponse.bind(this)}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              this.props.submitResponse(this.state.userResponse);
+              this.setState({userResponse: ''});
+            }
+          }
+          }
         >
         </input>
       </div>
@@ -48,6 +43,5 @@ export default class Response extends Component {
 }
 
 Response.propTypes = {
-  recordResponse: PropTypes.func,
   submitResponse: PropTypes.func,
 }

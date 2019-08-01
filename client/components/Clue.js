@@ -15,10 +15,16 @@ const Clue = (props) => {
         )
 
   }
+  if (props.answered){
+    return (
+      <div className='clueValue'></div> 
+    )
+  } else {
+    return (
+      <div className='clueValue' onClick={onClueItemClick} answered='false'>{props.clueObject.value} </div> 
+    )
+  }
 
-  return (
-    <div className='clueValue' onClick={onClueItemClick} answered='false'>{props.clueObject.value} </div> 
-  )
 };
 
 Clue.propTypes = {
