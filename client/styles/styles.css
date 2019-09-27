@@ -14,12 +14,13 @@
   --jepColor: #060ce9;
 }
 
+
+
 body,
 ul {
   margin: 0;
   font-family: 'ITC Korinna';
   font-weight: 800;
-  background-image: linear-gradient(blue, purple);
 }
 
 
